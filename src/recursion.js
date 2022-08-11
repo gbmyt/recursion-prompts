@@ -2,8 +2,9 @@
 
 // ============================
 // Solution Steps
-  // Handle Base Case
-  // Handle Recursive Case
+  // Edge Cases
+  // Base Case
+  // Recursive Case
   // Return Accumulated Result
 // ============================
 
@@ -23,9 +24,31 @@ var factorial = function(n) {
   return result;
 };
 
+// Inner Func Strategy Unnecessary When Doing Simple Calculations?
+// No need to preserve variables across scopes
+// var factorialWithInnerFunc = function(n) {
+//   if (n < 0) { return null; }
+
+//   if (n === 0) {
+//     return 1;
+//   }
+
+//   // var result = n * factorial(n - 1);
+//   var innerFunc = function(num) {
+//     // do something that involves calling innerFunc recursively
+
+//   };
+
+//   return result;
+// };
+
 // 2. Compute the sum of an array of integers.
 // sum([1,2,3,4,5,6]); // 21
 var sum = function(array) {
+  if (!array.length) { return 0; }
+  var arr = array.slice(0,);
+  var result = arr.pop() + sum(arr);
+  return result;
 };
 
 // 3. Sum all numbers in an array containing nested arrays.
