@@ -1,5 +1,12 @@
 /* jshint esversion: 6 */
 
+// ============================
+// Solution Steps
+  // Handle Base Case
+  // Handle Recursive Case
+  // Return Accumulated Result
+// ============================
+
 // Solve the following prompts using recursion.
 
 // 1. Calculate the factorial of a number. The factorial of a non-negative integer n,
@@ -7,6 +14,13 @@
 // Example: 5! = 5 x 4 x 3 x 2 x 1 = 120
 // factorial(5); // 120
 var factorial = function(n) {
+  if (n < 0) { return null; }
+
+  if (n === 0) {
+    return 1;
+  }
+  var result = n * factorial(n - 1);
+  return result;
 };
 
 // 2. Compute the sum of an array of integers.
