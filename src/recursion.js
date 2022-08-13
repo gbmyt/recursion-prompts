@@ -16,12 +16,8 @@
 // factorial(5); // 120
 var factorial = function(n) {
   if (n < 0) { return null; }
-
-  if (n === 0) {
-    return 1;
-  }
-  var result = n * factorial(n - 1);
-  return result;
+  if (n === 0) { return 1; }
+  return n * factorial(n - 1);
 };
 
 // Inner Func Strategy Unnecessary When Doing Simple Calculations?
@@ -79,13 +75,16 @@ var isEven = function(n) {
 };
 
 // 5. Sum all integers below a given integer.
-// sumBelow(10); // 45
-// sumBelow(7); // 21
 var sumBelow = function(n) {
-  // Edge Cases
-  // Base Case
-  // Recursive Case
-  // Return Accumulated Result
+  var num = Math.abs(n);
+  var next = num - 1;
+  var result;
+
+  if (num === 0) {
+    return num;
+  }
+  result = next + sumBelow(num - 1);
+  return n < 0 ? -result : result;
 };
 
 // 6. Get the integers within a range (x, y).
