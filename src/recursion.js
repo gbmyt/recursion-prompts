@@ -42,6 +42,7 @@ var factorial = function(n) {
 //   return result;
 // };
 
+// ================================================================
 // 2. Compute the sum of an array of integers.
 // sum([1,2,3,4,5,6]); // 21
 var sum = function(array) {
@@ -57,36 +58,54 @@ var arraySum = function(array) {
   if (!array.length) { return 0; }
   var sum = 0;
 
-  // Base Case
-  // Item encountered is a primitive/not an array
   array.forEach(function(item) {
     if (!Array.isArray(item)) {
       sum += item;
-      console.log(array, item, sum);
     } else {
-      // Recursive Case
-      // Item encountered is an array
       sum += arraySum(item);
     }
   });
-
-  // Return
   return sum;
 };
 
 // 4. Check if a number is even.
 var isEven = function(n) {
+  var num = Math.abs(n);
+
+  if (num === 1 || num - 2 === 1) { return false; }
+  if (num - 2 === 0) { return true; }
+
+  return isEven(num - 2);
 };
 
 // 5. Sum all integers below a given integer.
 // sumBelow(10); // 45
 // sumBelow(7); // 21
 var sumBelow = function(n) {
+  // Edge Cases
+  // Base Case
+  // Recursive Case
+  // Return Accumulated Result
 };
 
 // 6. Get the integers within a range (x, y).
 // range(2,9); // [3,4,5,6,7,8]
+
+// Base Case
+  // If we've reached the last number in range, stop and return the result array
+// Recursive Case
+  // Else if there are more numbers in range, continue
+
+// pseudocode
+
 var range = function(x, y) {
+  // Edge Cases
+
+  // Base Case
+
+  // Recursive Case
+
+  // Return
 };
 
 // 7. Compute the exponent of a number.
@@ -95,6 +114,21 @@ var range = function(x, y) {
 // exponent(4,3); // 64
 // https://www.khanacademy.org/computing/computer-science/algorithms/recursive-algorithms/a/computing-powers-of-a-number
 var exponent = function(base, exp) {
+  var result = 1;
+  // Edge Cases
+
+  // Base Case
+  if (exp === 0) { return 1; }
+  if (exp === 1) { return base; }
+
+  if (exp < 0) {
+  } else if (exp > 0) {
+    // Recursive Case
+    result *= exponent(base, exp - 1);
+  }
+
+  // Return Accumulated Result
+  return result;
 };
 
 // 8. Determine if a number is a power of two.
@@ -102,6 +136,10 @@ var exponent = function(base, exp) {
 // powerOfTwo(16); // true
 // powerOfTwo(10); // false
 var powerOfTwo = function(n) {
+  // Edge Cases
+  // Base Case
+  // Recursive Case
+  // Return Accumulated Result
 };
 
 // 9. Write a function that reverses a string.
