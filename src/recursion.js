@@ -43,14 +43,13 @@ var arraySum = function(array) {
 var arraySumInnerFunc = function(array) {
   var sum = 0;
 
-  var sumArray = function() {
-    // Base Case
-    if (typeof array !== 'object') { return array[0]; }
-
-    // Recursive Case
-    array.forEach(function(item) {
-      typeof item === 'object' ? sum += arraySum(item) : sum += item;
-    });
+  var sumArray = function(target) {
+    if (!Array.isArray(target)) { return 0; } // Base Case
+    if (Array.isArray(target)) { // Recursive Case
+      target.forEach(function(item) {
+        !Array.isArray(item) ? sum += item : sumArray(item);
+      });
+    }
   };
   sumArray(array);
   return sum;
