@@ -1,80 +1,76 @@
 /* jshint esversion: 6 */
 
-// ============================
-// Solution Steps
-  // Edge Cases
-  // Base Case
-  // Recursive Case
-  // Return Accumulated Result
-// ============================
-
-// Solve the following prompts using recursion.
-
-// 1. Calculate the factorial of a number. The factorial of a non-negative integer n,
-// denoted by n!, is the product of all positive integers less than or equal to n.
-// Example: 5! = 5 x 4 x 3 x 2 x 1 = 120
-// factorial(5); // 120
+// =======================================
+//              FACTORIAL
+// 1. Calculate the factorial of a number.
+// =======================================
 var factorial = function(n) {
   if (n < 0) { return null; }
   if (n === 0) { return 1; }
   return n * factorial(n - 1);
 };
 
-// Inner Func Strategy Unnecessary When Doing Simple Calculations?
-// No need to preserve variables across scopes
-// var factorialWithInnerFunc = function(n) {
-//   if (n < 0) { return null; }
-
-//   if (n === 0) {
-//     return 1;
-//   }
-
-//   // var result = n * factorial(n - 1);
-//   var innerFunc = function(num) {
-//     // do something that involves calling innerFunc recursively
-
-//   };
-
-//   return result;
-// };
-
-// ================================================================
+// =======================================
+//              SUM
 // 2. Compute the sum of an array of integers.
-// sum([1,2,3,4,5,6]); // 21
+// =======================================
 var sum = function(array) {
   if (!array.length) { return 0; }
   var arr = array.slice(0,);
-  var result = arr.pop() + sum(arr);
-  return result;
+  return arr.pop() + sum(arr);
 };
 
-// 3. Sum all numbers in an array containing nested arrays.
-// arraySum([1,[2,3],[[4]],5]); // 15
+// =======================================
+//             ARRAY SUM
+// 3. Sum all nums in array with nested arrays.
+// =======================================
+
+// Pure Recursion
 var arraySum = function(array) {
-  if (!array.length) { return 0; }
   var sum = 0;
 
+  // Base Case
+  if (!array.length) { return sum; }
+
+  // Recursive Case
   array.forEach(function(item) {
-    if (!Array.isArray(item)) {
-      sum += item;
-    } else {
-      sum += arraySum(item);
-    }
+    !Array.isArray(item) ? sum += item : sum += arraySum(item);
   });
   return sum;
 };
 
+// Inner Function Method
+var arraySumInnerFunc = function(array) {
+  var sum = 0;
+
+  var sumArray = function() {
+    // Base Case
+    if (typeof array !== 'object') { return array[0]; }
+
+    // Recursive Case
+    array.forEach(function(item) {
+      typeof item === 'object' ? sum += arraySum(item) : sum += item;
+    });
+  };
+  sumArray(array);
+  return sum;
+};
+
+// =======================================
+//              ISEVEN
 // 4. Check if a number is even.
+// =======================================
 var isEven = function(n) {
   var num = Math.abs(n);
-
   if (num === 1 || num - 2 === 1) { return false; }
   if (num - 2 === 0) { return true; }
-
   return isEven(num - 2);
 };
 
+// =======================================
+//              SUMBELOW
 // 5. Sum all integers below a given integer.
+// =======================================
 var sumBelow = function(n) {
   var num = Math.abs(n);
   var next = num - 1;
@@ -87,53 +83,41 @@ var sumBelow = function(n) {
   return n < 0 ? -result : result;
 };
 
+// =======================================
+//              RANGE
 // 6. Get the integers within a range (x, y).
 // range(2,9); // [3,4,5,6,7,8]
-
-// Base Case
-  // If we've reached the last number in range, stop and return the result array
-// Recursive Case
-  // Else if there are more numbers in range, continue
-
-// pseudocode
-
+// =======================================
 var range = function(x, y) {
-  // Edge Cases
 
-  // Base Case
-
-  // Recursive Case
-
-  // Return
 };
 
+// =======================================
+//             EXPONENT
 // 7. Compute the exponent of a number.
 // The exponent of a number says how many times the base number is used as a factor.
 // 8^2 = 8 x 8 = 64. Here, 8 is the base and 2 is the exponent.
 // exponent(4,3); // 64
 // https://www.khanacademy.org/computing/computer-science/algorithms/recursive-algorithms/a/computing-powers-of-a-number
+// =======================================
 var exponent = function(base, exp) {
   var result = 1;
-  // Edge Cases
 
   // Base Case
-  if (exp === 0) { return 1; }
-  if (exp === 1) { return base; }
-
-  if (exp < 0) {
-  } else if (exp > 0) {
+  if (exp === 0 || exp === 1) {
+    return 1;
+  } else {
     // Recursive Case
-    result *= exponent(base, exp - 1);
   }
-
-  // Return Accumulated Result
-  return result;
 };
 
+// =======================================
+//           POWER OF TWO
 // 8. Determine if a number is a power of two.
 // powerOfTwo(1); // true
 // powerOfTwo(16); // true
 // powerOfTwo(10); // false
+// =======================================
 var powerOfTwo = function(n) {
   // Edge Cases
   // Base Case
@@ -141,7 +125,10 @@ var powerOfTwo = function(n) {
   // Return Accumulated Result
 };
 
+// =======================================
+//           STRING REVERSE
 // 9. Write a function that reverses a string.
+// =======================================
 var reverse = function(string) {
 };
 
