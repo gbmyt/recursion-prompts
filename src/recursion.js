@@ -108,15 +108,17 @@ var range = function(start, end) {
 // exponent(4,3); // 64
 // https://www.khanacademy.org/computing/computer-science/algorithms/recursive-algorithms/a/computing-powers-of-a-number
 // =======================================
-var exponent = function(base, exp) {
-  var result = 1;
+var exponent = function(b, e) {
+  var [base, exp, result] = [b, e, 1];
 
-  // Base Case
-  if (exp === 0 || exp === 1) {
-    return 1;
-  } else {
-    // Recursive Case
+  if (exp === 0) return 1;
+  if (exp === 1) return base;
+
+  while (exp !== 0) {
+    result *= base;
+    exponent(result, exp > 0? --exp : ++exp);
   }
+  return e < 0 ? 1/result : result;
 };
 
 // =======================================
