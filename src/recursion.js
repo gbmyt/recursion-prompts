@@ -25,31 +25,25 @@ var sum = function(array) {
 // 3. Sum all nums in array with nested arrays.
 // =======================================
 
-// Pure Recursion
+// Function Calls Self from forEach
+// Must loop to handle nested arrays
 var arraySum = function(array) {
   var sum = 0;
-
-  // Base Case
   if (!array.length) { return sum; }
 
-  // Recursive Case
   array.forEach(function(item) {
     !Array.isArray(item) ? sum += item : sum += arraySum(item);
   });
   return sum;
 };
 
-// Inner Function Method
+// Subroutine Method
 var arraySumInnerFunc = function(array) {
   var sum = 0;
 
   var sumArray = function(target) {
-    if (!Array.isArray(target)) { return 0; } // Base Case
-    if (Array.isArray(target)) { // Recursive Case
-      target.forEach(function(item) {
-        !Array.isArray(item) ? sum += item : sumArray(item);
-      });
-    }
+    !Array.isArray(target) ? 0 :
+    target.forEach(function(item) { !Array.isArray(item) ? sum += item : sumArray(item); });
   };
   sumArray(array);
   return sum;
@@ -87,8 +81,23 @@ var sumBelow = function(n) {
 // 6. Get the integers within a range (x, y).
 // range(2,9); // [3,4,5,6,7,8]
 // =======================================
-var range = function(x, y) {
+var range = function(start, end) {
+  // Initialize range vars
+  var result = [];
+  var next = start;
 
+  // Increment or Decrement based on provided args
+  var countUp = start > end ? false: true;
+
+  // If out of range, return empty Array
+  if (start === end || start + 1 === end) { return []; }
+
+  // While there are still nums in range, add next num to array
+  while (countUp ? next < end : next > end) {
+    next = countUp ? ++next : --next;
+    next !== end ? result.push(next) : range(next, end);
+  }
+  return result;
 };
 
 // =======================================
